@@ -1,0 +1,68 @@
+CREATE TABLE EMPLOYEE (ID CHAR(5) PRIMARY KEY,DeptID INT,Name VARCHAR(15),Designation VARCHAR(15),Basic DECIMAL(10,2),Gender CHAR(1),FOREIGN KEY (DeptID) REFERENCES DEPARTMENT(DeptID));
+
+
+CREATE TABLE DEPARTMENT (
+    DeptID INT PRIMARY KEY,
+    DName VARCHAR(50)
+);
+
+
+INSERT INTO DEPARTMENT (DeptID, DName) VALUES
+(1, 'DESIGN'),
+(2, 'CODING'),
+(3, 'TESTING'),
+(4, 'RESEARCH');
+
+
+INSERT INTO EMPLOYEE (ID, DeptID, Name, Designation, Basic, Gender) VALUES
+(101, 1, 'Ram', 'Typist', 2000, 'M'),
+(102, 2, 'Arun', 'Analyst', 6000, 'M'),
+(121, 1, 'Ruby', 'Typist', 2010, 'F'),
+(156, 3, 'Mary', 'Manager', 4500, 'F'),
+(123, 2, 'Mridula', 'Analyst', 6000, 'F'),
+(114, 4, 'Menon', 'Clerk', 1500, 'M'),
+(115, 4, 'Tim', 'Clerk', 1500, 'M'),
+(127, 2, 'Kiran', 'Manager', 4000, 'M');
+
+
+4. SELECT MAX(Basic) AS Max_Salary  FROM EMPLOYEE  WHERE Gender = 'F';
+
+7. UPDATE EMPLOYEE SET Joining_Date = '2020-01-01' WHERE ID = 101;
+
+
+13. SELECT SUM(Basic) AS TotalSalary
+FROM EMPLOYEE E 
+JOIN DEPARTMENT D ON E.DeptID = D.DeptID 
+WHERE D.DName = 'DESIGN';
+
+
+15. SELECT E.Name,E.Basic 
+FROM EMPLOYEE E 
+JOIN DEPARTMENT D ON E.DeptID = D.DeptID 
+WHERE D.DName = 'RESEARCH';
+
+
+18. SELECT D.DName 
+FROM DEPARTMENT D 
+JOIN EMPLOYEE E ON E.DeptID = D.DeptID
+GROUP BY D.DName 
+ORDER BY sum(E.Basic) DESC 
+LIMIT 1;
+
+
+19. SELECT D.DName 
+FROM DEPARTMENT D 
+JOIN EMPLOYEE E ON E.DeptID = D.DeptID 
+GROUP BY D.DName 
+ORDER BY COUNT(E.ID) ASC LIMIT 1;
+
+
+20. SELECT DISTINCT Basic FROM EMPLOYEE ORDER BY Basic DESC LIMIT 1 OFFSET 1;
+
+
+21. SELECT DISTINCT Basic FROM EMPLOYEE ORDER BY Basic ASC LIMIT 1 OFFSET 1;
+
+
+22. SELECT E.Name FROM EMPLOYEE E JOIN ( 
+
+
